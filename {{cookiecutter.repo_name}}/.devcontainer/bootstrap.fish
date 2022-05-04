@@ -6,11 +6,6 @@ mkdir -p ~/.config/neofetch/
 cp .devcontainer/phoenix_files/.bashrc ~/.bashrc
 cp .devcontainer/phoenix_files/.config/fish/config.fish ~/.config/fish/config.fish
 cp .devcontainer/phoenix_files/.config/neofetch/config.conf ~/.config/neofetch/config.conf
-{% if cookiecutter.aws == "yes" %}
-asdf install awscli latest
-asdf local awscli latest
-cp -r .devcontainer/phoenix_files/.aws/ ~/.aws/
-{%- endif %}
 
 source ~/.config/fish/config.fish
 
@@ -18,5 +13,8 @@ source ~/.config/fish/config.fish
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 fisher install PatrickF1/fzf.fish
 
-# install python and python packages
-yes | pipenv install --dev
+{% if cookiecutter.aws == "yes" %}
+asdf install awscli latest
+asdf local awscli latest
+cp -r .devcontainer/phoenix_files/.aws/ ~/.aws/
+{%- endif %}
